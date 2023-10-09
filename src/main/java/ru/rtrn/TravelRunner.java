@@ -20,6 +20,6 @@ public class TravelRunner {
         System.out.println(pointTo);
 
         var distance = point5.distanceToPoint(pointTo);
-        System.out.printf("Distance: %.2f", distance/1000);
+        System.out.printf("Distance: %.2f km", distance/1000);
     }
 }
