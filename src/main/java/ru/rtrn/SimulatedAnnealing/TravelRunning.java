@@ -1,4 +1,4 @@
-package SimulatedAnnealing;
+package ru.rtrn.SimulatedAnnealing;
 
 public class TravelRunning {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package SimulatedAnnealing;
+package ru.rtrn.SimulatedAnnealing;
 
 import lombok.Data;
 
