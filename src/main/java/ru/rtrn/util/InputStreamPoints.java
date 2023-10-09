@@ -11,7 +11,7 @@ import java.util.List;
 public final class InputStreamPoints {
 
 
-    private static final String FILE_NAME_KEY = "filename";
+    private static final String FILE_NAME_KEY = "file.input";
     private static final String SEPARATOR_KEY = "separator";
 
     private InputStreamPoints() {
