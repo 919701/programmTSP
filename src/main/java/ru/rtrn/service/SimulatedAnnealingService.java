@@ -1,22 +1,17 @@
 package ru.rtrn.service;
 
-import ru.rtrn.util.MapperToIndexPoint;
+
+import ru.rtrn.entity.TravelInfo;
 
 public class SimulatedAnnealingService {
 
     private static TravelService travel = new TravelService();
 
-    public static double simulateAnnealing(double startingTemperature, int numberOfIterations, double coolingRate) {
-        System.out.println("Starting SA with temperature: " + startingTemperature + ", # of iterations: " + numberOfIterations + " and colling rate: " + coolingRate);
+    public static TravelInfo simulateAnnealing(double startingTemperature, int numberOfIterations, double coolingRate) {
         double t = startingTemperature;
         travel.generateInitialTravel();
-        System.out.println("\n*******************  travel  *******************\n" + travel.toIndex());
-
         double bestDistance = travel.getDistance();
-        System.out.println("\n*******************  bestDistance  *******************\n" + bestDistance / 1000);
-
         TravelService currentSolution = travel;
-        System.out.println("*******************currentSolution  *******************\n" + currentSolution.toIndex());
 
         for (int i = 0; i < numberOfIterations; i++) {
             if (t > 0.1) {
@@ -31,15 +26,8 @@ public class SimulatedAnnealingService {
             } else {
                 continue;
             }
-//            if (i % 100 == 0) {
-//                System.out.println("Iteration #" + i);
-//            }
         }
-        System.out.println("-".repeat(50));
-        System.out.println("\n*******************  currentSolution  *******************\n" + currentSolution.toIndex());
-        System.out.println("-".repeat(50));
-
-        return bestDistance;
+        return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance);
     }
 
 }

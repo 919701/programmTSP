@@ -7,22 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public final class InputStreamPoints {
+public final class ReadUtil {
 
 
     private static final String FILE_NAME_KEY = "file.input";
     private static final String SEPARATOR_KEY = "separator";
 
-    private InputStreamPoints() {
+    private ReadUtil() {
     }
 
     @SneakyThrows
     public static ArrayList<Point> getList() {
 
-        var list = Files.readAllLines(Path.of(PropertiesUtil.get(FILE_NAME_KEY)));
+        var path = Path.of(PropertiesUtil.get(FILE_NAME_KEY));
+        var list = Files.readAllLines(path);
         var separator = PropertiesUtil.get(SEPARATOR_KEY);
 
         ArrayList<Point> points = new ArrayList<>();

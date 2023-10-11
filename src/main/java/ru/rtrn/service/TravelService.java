@@ -2,11 +2,10 @@ package ru.rtrn.service;
 
 import lombok.Data;
 import ru.rtrn.entity.Point;
-import ru.rtrn.util.InputStreamPoints;
+import ru.rtrn.util.ReadUtil;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Random;
 
 @Data
 public class TravelService {
@@ -15,11 +14,10 @@ public class TravelService {
     private ArrayList<Point> previousTravel = new ArrayList<>();
 
     public void generateInitialTravel() {
-        var points = InputStreamPoints.getList();
+        var points = ReadUtil.getList();
         var pointFist = points.get(0);
         points.add(pointFist);
         travel = points;
-//        Collections.shuffle(travel);
     }
 
     public void swapPointes() {
@@ -42,7 +40,7 @@ public class TravelService {
         return (int) (Math.random() * ++max) + min;
     }
 
-    public Point getPoint(int index) {
+    private Point getPoint(int index) {
         return travel.get(index);
     }
 
@@ -64,7 +62,7 @@ public class TravelService {
     public ArrayList<Integer> toIndex() {
         var pointList = travel;
         var indexList = new ArrayList<Integer>();
-        var pointMap = InputStreamPoints.getMap();
+        var pointMap = ReadUtil.getMap();
         for (Point point :
                 pointList) {
             var index = pointMap.entrySet().stream()
@@ -75,5 +73,4 @@ public class TravelService {
         }
         return indexList;
     }
-
 }

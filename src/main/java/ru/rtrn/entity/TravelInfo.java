@@ -4,13 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TravelInfo {
 
-    private int pointFrom;
-    private int pointTo;
+    private List<Point> pointTravel;
+    private List<Integer> indexTravel;
     private double distance;
 
 }
