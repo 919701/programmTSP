@@ -13,7 +13,7 @@ repositories {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.rtrn.TravelRunner'
+                'Main-Class': 'ru.rtrn.Main'
         )
     }
 }
