@@ -2,10 +2,10 @@ package ru.rtrn.SimulatedAnnealing;
 
 public class SimulatedAnnealing {
 
-    private static Travel travel = new Travel(10);
+    private static Travel travel = new Travel(100);
 
     public static double simulateAnnealing(double startingTemperature, int numberOfIterations, double coolingRate) {
-        System.out.println("Starting SA with temperature: " + startingTemperature + ", # of iterations: " + numberOfIterations + " and colling rate: " + coolingRate);
+        System.out.println("Starting SA with temperature: " + startingTemperature + ", of iterations: " + numberOfIterations + " and colling rate: " + coolingRate);
         double t = startingTemperature;
         travel.generateInitialTravel();
         double bestDistance = travel.getDistance();

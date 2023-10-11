@@ -6,7 +6,9 @@ import ru.rtrn.entity.Point;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class InputStreamPoints {
 
@@ -18,17 +20,27 @@ public final class InputStreamPoints {
     }
 
     @SneakyThrows
-    public static List<Point> getList() {
+    public static ArrayList<Point> getList() {
 
         var list = Files.readAllLines(Path.of(PropertiesUtil.get(FILE_NAME_KEY)));
         var separator = PropertiesUtil.get(SEPARATOR_KEY);
 
-        List<Point> points = new ArrayList<>();
+        ArrayList<Point> points = new ArrayList<>();
         for (String s : list) {
             var split = s.split(separator);
             var latitude = Double.parseDouble(split[0]);
             var longitude = Double.parseDouble(split[1]);
             points.add(new Point(latitude, longitude));
+        }
+        return points;
+    }
+
+    public static Map<Integer,Point> getMap() {
+        Map<Integer,Point> points = new HashMap<>();
+        int i=0;
+        for (Point point :
+                getList()) {
+            points.put(++i, point);
         }
         return points;
     }
