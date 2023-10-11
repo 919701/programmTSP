@@ -5,10 +5,7 @@ import ru.rtrn.entity.Point;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class ReadUtil {
 
@@ -26,22 +23,22 @@ public final class ReadUtil {
         var list = Files.readAllLines(path);
         var separator = PropertiesUtil.get(SEPARATOR_KEY);
 
-        ArrayList<Point> points = new ArrayList<>();
+        Set<Point> points = new LinkedHashSet<>();
         for (String s : list) {
             var split = s.split(separator);
             var latitude = Double.parseDouble(split[0]);
             var longitude = Double.parseDouble(split[1]);
             points.add(new Point(latitude, longitude));
         }
-        return points;
+        var objects = new ArrayList<Point>(points);
+        objects.add(objects.get(0));
+        return objects;
     }
 
     public static Map<Integer,Point> getMap() {
-        Map<Integer,Point> points = new HashMap<>();
-        int i=0;
-        for (Point point :
-                getList()) {
-            points.put(++i, point);
+        Map<Integer, Point> points = new HashMap<>();
+        for (int i = 0; i < getList().size() - 1; i++) {
+            points.put(i + 1, getList().get(i));
         }
         return points;
     }

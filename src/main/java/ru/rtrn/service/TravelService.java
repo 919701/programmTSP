@@ -6,6 +6,7 @@ import ru.rtrn.util.ReadUtil;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 @Data
 public class TravelService {
@@ -13,16 +14,14 @@ public class TravelService {
     private ArrayList<Point> travel;
     private ArrayList<Point> previousTravel = new ArrayList<>();
 
-    public void generateInitialTravel() {
-        var points = ReadUtil.getList();
-        var pointFist = points.get(0);
-        points.add(pointFist);
+    public void generateInitialTravel(ArrayList<Point> points) {
         travel = points;
     }
 
     public void swapPointes() {
-        int a = generateRandomIndex();
-        int b = generateRandomIndex();
+        var random = new Random();
+        int a = random.nextInt(1, travel.size()-1);
+        int b = random.nextInt(1, travel.size()-1);
         previousTravel = new ArrayList<>(travel);
         Point x = travel.get(a);
         Point y = travel.get(b);
@@ -32,12 +31,6 @@ public class TravelService {
 
     public void revertSwap() {
         travel = previousTravel;
-    }
-
-    private int generateRandomIndex() {
-        var max = travel.size() - 3;
-        var min = 1;
-        return (int) (Math.random() * ++max) + min;
     }
 
     private Point getPoint(int index) {
