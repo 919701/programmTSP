@@ -18,8 +18,8 @@ public class ThreadRunning {
         CopyOnWriteArrayList<TravelInfo> list = new CopyOnWriteArrayList<>();
         var points = ReadUtil.getList();
 
-        var pool = Executors.newWorkStealingPool();
-        for (int i = 0; i < 1000; i++) {
+        var pool = Executors.newFixedThreadPool(5);
+        for (int i = 0; i < 5; i++) {
             var future = pool.submit(() -> SimulatedAnnealingService.annealing(points));
             list.add(future.get());
         }

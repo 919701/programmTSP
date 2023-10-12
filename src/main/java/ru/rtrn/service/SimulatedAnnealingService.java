@@ -30,7 +30,7 @@ public class SimulatedAnnealingService {
             double currentDistance = currentSolution.getDistance();
             if (currentDistance < bestDistance) {
                 bestDistance = currentDistance;
-            } else if (Math.exp((bestDistance - currentDistance) / startingTemperature) < Math.random()) {
+            } else if (100*Math.exp((bestDistance - currentDistance) / startingTemperature) < Math.random()) {
                 currentSolution.revertSwap();
             }
             startingTemperature *= coolingRate;
