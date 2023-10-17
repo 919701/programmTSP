@@ -11,7 +11,7 @@ import static java.math.RoundingMode.HALF_UP;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Starting...\n");
+        System.out.println("The optimal route is calculated...\n");
         var travelResult = SimulatedAnnealingService.annealing(ReadUtil.getList());
 
         System.out.println("Result:");
