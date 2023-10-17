@@ -4,7 +4,6 @@ import ru.rtrn.service.SimulatedAnnealingService;
 import ru.rtrn.util.ReadUtil;
 import ru.rtrn.util.WriteUtil;
 
-import javax.sound.midi.Soundbank;
 import java.math.BigDecimal;
 
 import static java.math.RoundingMode.HALF_UP;
