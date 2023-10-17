@@ -1,4 +1,4 @@
-package ru.rtrn;
+package ru.rtrn.demo;
 
 import lombok.SneakyThrows;
 import ru.rtrn.entity.Point;

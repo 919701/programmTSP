@@ -1,4 +1,4 @@
-package ru.rtrn;
+package ru.rtrn.demo;
 
 import java.util.Random;
 

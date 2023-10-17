@@ -3,10 +3,12 @@ package ru.rtrn.util;
 import lombok.SneakyThrows;
 import ru.rtrn.entity.TravelInfo;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+
+import static java.math.RoundingMode.HALF_UP;
 
 public final class WriteUtil {
 
@@ -22,7 +24,7 @@ public final class WriteUtil {
         var path =Path.of(pathLocal,PropertiesUtil.get(FILE_NAME_KEY));
         var result = String.format("%s\n%s\n%s",
                 AUTHOR,
-                travelInfo.getDistance(),
+                BigDecimal.valueOf(travelInfo.getDistance()).setScale(2, HALF_UP),
                 travelInfo.getIndexTravel());
         Files.writeString(path,
                result,
