@@ -19,7 +19,8 @@ public final class ReadUtil {
     @SneakyThrows
     public static ArrayList<Point> getList() {
 
-        var path = Path.of(PropertiesUtil.get(FILE_NAME_KEY));
+        var pathLocal = Path.of(ReadUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParent().toString();
+        var path = Path.of(pathLocal, PropertiesUtil.get(FILE_NAME_KEY));
         var list = Files.readAllLines(path);
         var separator = PropertiesUtil.get(SEPARATOR_KEY);
 

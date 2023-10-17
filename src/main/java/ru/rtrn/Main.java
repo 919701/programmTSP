@@ -2,6 +2,7 @@ package ru.rtrn;
 
 import ru.rtrn.service.SimulatedAnnealingService;
 import ru.rtrn.util.ReadUtil;
+import ru.rtrn.util.WriteUtil;
 
 public class Main {
 
@@ -11,7 +12,7 @@ public class Main {
 
         System.out.println(travelResult.getIndexTravel());
         System.out.println(travelResult.getDistance());
-//        WriteUtil.toFile(travelResult);
+        WriteUtil.toFile(travelResult);
 
     }
 }

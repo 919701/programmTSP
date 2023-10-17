@@ -18,7 +18,8 @@ public final class WriteUtil {
 
     @SneakyThrows
     public static void toFile(TravelInfo travelInfo) {
-        var path = Path.of(PropertiesUtil.get(FILE_NAME_KEY));
+        var pathLocal = Path.of(WriteUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParent().toString();
+        var path =Path.of(pathLocal,PropertiesUtil.get(FILE_NAME_KEY));
         var result = String.format("%s\n%s\n%s",
                 AUTHOR,
                 travelInfo.getDistance(),

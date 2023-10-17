@@ -25,9 +25,7 @@ public class ThreadRunning {
         }
         pool.shutdown();
         list.stream()
-                .map(TravelInfo::getDistance)
-                .sorted()
-                .limit(5)
+                .map(TravelInfo::getIndexTravel)
                 .forEach(System.out::println);
     }
 }
