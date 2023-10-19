@@ -37,7 +37,7 @@ public class SimulatedAnnealingService {
         }
 
 
-        return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance);
+        return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance/1000);
     }
     public static TravelInfo annealing(ArrayList<Point> points) {
         List<TravelInfo> listTravel = new ArrayList<>();
