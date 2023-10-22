@@ -1,4 +1,4 @@
-package ru.rtrn.demo;
+package ru.rtrn.creatpoints;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

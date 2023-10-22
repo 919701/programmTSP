@@ -6,10 +6,9 @@ import ru.rtrn.entity.TravelInfo;
 import ru.rtrn.util.PropertiesUtil;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static java.util.Comparator.comparing;
 
 public class SimulatedAnnealingService {
 
@@ -17,7 +16,6 @@ public class SimulatedAnnealingService {
     private static final String NUMBER_OF_ITERATIONS_KEY = "numberOfIterations";
     private static final String COOLING_RATE_KEY = "coolingRate";
     private static final TravelService travel = new TravelService();
-    private static Set<TravelService> travelSet = new HashSet<>();
 
     public static TravelInfo simulateAnnealing(ArrayList<Point> points) {
         var startingTemperature = Integer.parseInt(PropertiesUtil.get(STARTING_TEMPERATURE_KEY));
@@ -27,21 +25,22 @@ public class SimulatedAnnealingService {
         travel.generateInitialTravel(points);
         double bestDistance = travel.getDistance();
         TravelService currentSolution = travel;
-
-        while (startingTemperature > 0.01) {
-            currentSolution.swapPointes();
-            double currentDistance = currentSolution.getDistance();
-            if (currentDistance < bestDistance) {
-                bestDistance = currentDistance;
-            } else if (100*Math.exp((bestDistance - currentDistance) / startingTemperature) < Math.random()) {
-                currentSolution.revertSwap();
+        for (int i = 0; i < 5; i++) {
+            while (startingTemperature > 0.01) {
+                currentSolution.swapPointes();
+                double currentDistance = currentSolution.getDistance();
+                if (currentDistance < bestDistance) {
+                    bestDistance = currentDistance;
+                } else if (100 * Math.exp((bestDistance - currentDistance) / startingTemperature) < Math.random()) {
+                    currentSolution.revertSwap();
+                }
+                startingTemperature *= coolingRate;
             }
-            startingTemperature *= coolingRate;
+            startingTemperature *= 100000;
         }
-
-
-        return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance/1000);
+        return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance / 1000);
     }
+
 
     public static TravelInfo annealing(ArrayList<Point> points) {
         List<TravelInfo> listTravel = new ArrayList<>();
@@ -49,11 +48,8 @@ public class SimulatedAnnealingService {
         var numberOfIterations = Integer.parseInt(PropertiesUtil.get(NUMBER_OF_ITERATIONS_KEY));
         for (int i = 0; i < numberOfIterations; i++) {
             var travelResult = SimulatedAnnealingService.simulateAnnealing(pointsNew);
-            pointsNew.clear();
-            pointsNew.addAll(travelResult.getPointTravel());
             listTravel.add(travelResult);
         }
-        return listTravel.stream().min(Comparator.comparing(TravelInfo::getDistance)).get();
+        return listTravel.stream().min(comparing(TravelInfo::getDistance)).get();
     }
-
 }

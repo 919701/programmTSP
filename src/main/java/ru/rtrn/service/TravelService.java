@@ -15,7 +15,6 @@ public class TravelService {
 
     private ArrayList<Point> travel;
     private ArrayList<Point> previousTravel = new ArrayList<>();
-    private Set<TravelService> travelSet = new HashSet<>();
 
     public void generateInitialTravel(ArrayList<Point> points) {
         travel = points;
