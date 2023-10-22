@@ -13,7 +13,8 @@ repositories {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.rtrn.Main'
+//                'Main-Class': 'ru.rtrn.Main'
+                'Main-Class': 'ru.rtrn.demo.ThreadRunning'
         )
     }
 }

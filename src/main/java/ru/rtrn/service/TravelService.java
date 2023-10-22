@@ -5,14 +5,17 @@ import ru.rtrn.entity.Point;
 import ru.rtrn.util.ReadUtil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 @Data
 public class TravelService {
 
     private ArrayList<Point> travel;
     private ArrayList<Point> previousTravel = new ArrayList<>();
+    private Set<TravelService> travelSet = new HashSet<>();
 
     public void generateInitialTravel(ArrayList<Point> points) {
         travel = points;

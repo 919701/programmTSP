@@ -7,7 +7,9 @@ import ru.rtrn.util.PropertiesUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SimulatedAnnealingService {
 
@@ -15,6 +17,7 @@ public class SimulatedAnnealingService {
     private static final String NUMBER_OF_ITERATIONS_KEY = "numberOfIterations";
     private static final String COOLING_RATE_KEY = "coolingRate";
     private static final TravelService travel = new TravelService();
+    private static Set<TravelService> travelSet = new HashSet<>();
 
     public static TravelInfo simulateAnnealing(ArrayList<Point> points) {
         var startingTemperature = Integer.parseInt(PropertiesUtil.get(STARTING_TEMPERATURE_KEY));
@@ -39,6 +42,7 @@ public class SimulatedAnnealingService {
 
         return new TravelInfo(currentSolution.getTravel(), currentSolution.toIndex(), bestDistance/1000);
     }
+
     public static TravelInfo annealing(ArrayList<Point> points) {
         List<TravelInfo> listTravel = new ArrayList<>();
         var pointsNew = new ArrayList<>(points);
