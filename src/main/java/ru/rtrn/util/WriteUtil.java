@@ -1,7 +1,7 @@
 package ru.rtrn.util;
 
 import lombok.SneakyThrows;
-import ru.rtrn.entity.TravelInfo;
+import ru.rtrn.entity.Travel;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -24,16 +24,16 @@ public final class WriteUtil {
     /**
      The method allows you to write the result to an output file,
      where the file name is pulled from the application properties
-     * @param travelInfo
+     * @param travel
      */
     @SneakyThrows
-    public static void toFile(TravelInfo travelInfo) {
+    public static void toFile(Travel travel) {
         var pathLocal = Path.of(WriteUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParent().toString();
         var path =Path.of(pathLocal,PropertiesUtil.get(FILE_NAME_KEY));
         var result = String.format("%s\n%s\n%s",
                 AUTHOR,
-                BigDecimal.valueOf(travelInfo.getDistance()).setScale(2, HALF_UP),
-                travelInfo.getIndexTravel());
+                BigDecimal.valueOf(travel.getDistance()).setScale(2, HALF_UP),
+                travel.getIndexTravel());
         Files.writeString(path, result, StandardCharsets.UTF_8);
     }
 }

@@ -13,7 +13,7 @@ repositories {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.rtrn.ThreadRunning'
+                'Main-Class': 'ru.rtrn.TspRunning'
         )
     }
     from configurations.runtimeClasspath.files.collect { zipTree(it) }

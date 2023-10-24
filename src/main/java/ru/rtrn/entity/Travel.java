@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelInfo {
+public class Travel {
 
     private List<Point> pointTravel;
     private List<Integer> indexTravel;
