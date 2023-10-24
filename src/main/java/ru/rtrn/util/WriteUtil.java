@@ -10,6 +10,9 @@ import java.nio.file.Path;
 
 import static java.math.RoundingMode.HALF_UP;
 
+/**
+ Class for writing results to an output file
+ */
 public final class WriteUtil {
 
     private static final String FILE_NAME_KEY = "file.output";
@@ -18,6 +21,11 @@ public final class WriteUtil {
     private WriteUtil() {
     }
 
+    /**
+     The method allows you to write the result to an output file,
+     where the file name is pulled from the application properties
+     * @param travelInfo
+     */
     @SneakyThrows
     public static void toFile(TravelInfo travelInfo) {
         var pathLocal = Path.of(WriteUtil.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParent().toString();
@@ -26,8 +34,6 @@ public final class WriteUtil {
                 AUTHOR,
                 BigDecimal.valueOf(travelInfo.getDistance()).setScale(2, HALF_UP),
                 travelInfo.getIndexTravel());
-        Files.writeString(path,
-               result,
-               StandardCharsets.UTF_8);
+        Files.writeString(path, result, StandardCharsets.UTF_8);
     }
 }

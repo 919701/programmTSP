@@ -7,8 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ A class designed to record application execution results to an output file
+ */
 public final class ReadUtil {
-
 
     private static final String FILE_NAME_KEY = "file.input";
     private static final String SEPARATOR_KEY = "separator";
@@ -16,6 +18,10 @@ public final class ReadUtil {
     private ReadUtil() {
     }
 
+    /**
+     The method reads data from the file line by line and returns a list of points as an array
+     * @return array of GPS points objects
+     */
     @SneakyThrows
     public static ArrayList<Point> getList() {
 
@@ -36,6 +42,10 @@ public final class ReadUtil {
         return objects;
     }
 
+    /**
+     The method numbers points according to their location in the input file
+     * @return map with the serial number of the GPS point and the GPS point itself
+     */
     public static Map<Integer,Point> getMap() {
         Map<Integer, Point> points = new HashMap<>();
         for (int i = 0; i < getList().size() - 1; i++) {
